@@ -2,7 +2,7 @@ version: "3.8"
 
 networks:
   over-node:
-    driver: overlay
+    driver: bridge
 
 volumes:
   mongo-data:
@@ -12,14 +12,12 @@ services:
     build:
       context: .
     image: flexipay:1.0.1
+    env_file:
+      - .env.compose
     ports:
       - "5000:5000"
     networks:
       - over-node
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
 
   mongo:
     image: mongo:latest
@@ -29,7 +27,3 @@ services:
       - over-node
     volumes:
       - mongo-data:/data/db
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
