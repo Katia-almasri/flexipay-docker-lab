@@ -1,18 +1,6 @@
 ````md
-# 💳 FlexiPay – Custom Payment Gateway
-
-**FlexiPay** is a scalable and secure custom payment gateway built with **Node.js**, **Express**, and **MongoDB**. It acts as a central platform to process payments through various providers including **Stripe**, **PayPal**, and digital wallets. Designed with extensibility in mind, FlexiPay can be embedded in SaaS platforms or marketplaces using a platform-owned strategy, managing merchant payments and weekly balance distributions.
-
-## 📦 Features
-
-- ✅ **Multi-Provider Support** (Stripe, PayPal, digital wallets)
-- 🧩 **Modular Payment Method Architecture**
-- 🔐 **Secure Customer and Merchant Credential Handling**
-- 📑 **Transaction Logging & Metadata Storage**
-- 📊 **Pagination, Filtering, and RESTful APIs**
-- 🔄 **Webhook Support** for asynchronous payment events
-- 🧮 **Scheduled Payout Job** for weekly merchant balance distribution
-- ⚙️ **Extensible** to add more gateways (e.g., Apple Pay, Google Pay)
+🐳 Local Docker Setup for FlexiPay
+** This guide explains how to run FlexiPay locally using Docker Compose, ideal for development and testing before deploying to Docker Swarm, cloud, or production environments.**
 
 ## 📁 Project Structure
 
@@ -46,41 +34,22 @@ flexipay/
 │ └── stripe.js
 │ └── paypal.js
 │
-└── app.js
+└── index.js
+└── Dockerfile
+└── .dockerignore
+└── docker-compose.yaml
+└── .env.compose
 ```
 
-## ⚙️ Setup & Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/flexipay.git
-   cd flexipay
-   ```
-````
+## ⚙️ Requirements
+1. Docker Engine installed
 
-2. **Install dependencies**
+2. Docker Compose v2+ installed
 
-   ```bash
-   npm install
-   ```
+3. Port 5000 (app) and 27017 (MongoDB) should be free
 
-3. **Configure environment**
 
-   - Create `.env` file based on `.env.example`:
-
-     ```
-     STRIPE_SECRET_KEY=sk_test_***
-     PAYPAL_CLIENT_ID=***
-     PAYPAL_SECRET=***
-     MONGODB_URI=mongodb://localhost:27017/flexipay
-     PORT=3000
-     ```
-
-4. **Run the app**
-
-   ```bash
-   npm run dev
-   ```
 
 ---
 
