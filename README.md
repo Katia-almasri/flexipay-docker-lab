@@ -61,31 +61,73 @@ PORT=5000
 ---
 
 
-## ⏱️ Scheduled Payouts
+## 🐳 Docker Compose Configuration
 
-A cron job runs weekly to distribute merchant balances based on accumulated transactions. This uses the `Transaction` model and aggregates balances per merchant, then initiates payouts via the payment provider API.
+```bash
+version: "3.8"
 
-You can trigger it manually for testing:
+networks:
+  over-node:
+    driver: bridge
 
-```js
-npm run payout:weekly
+volumes:
+  mongo-data:
+
+services:
+  web:
+    build:
+      context: .
+    image: flexipay:1.0.1
+    env_file:
+      - .env
+    ports:
+      - "5000:5000"
+    networks:
+      - over-node
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - over-node
+    volumes:
+      - mongo-data:/data/db
+
 ```
 
 ---
 
-## 💡 How It Works (Stripe Example)
+## 🚀 Running the Project Locally
 
-1. Merchant registers and adds Stripe as a payment method.
-2. FlexiPay creates a Stripe customer for the user.
-3. On checkout, a Stripe PaymentIntent is created.
-4. Stripe handles card input + authentication.
-5. On success, Stripe triggers the webhook.
-6. FlexiPay updates the `Transaction` and records success.
-7. Weekly, merchant balances are distributed via Stripe payouts.
+Start the compose dile
+   ```bash
+   docker compose upd
+   ```
+
+Your backend should now be available at:
+
+http://localhost:5000
+MongoDB will be running in the background at:
+
+mongodb://mongo:27017/flexipay
 
 ---
 
-## 🛡️ Best Practices Followed
+## 🧼 Cleanup
+To stop and remove containers, networks, and volumes:
+```bash
+docker compose down -v --remove-orphans
+```
+
+## 📄 .dockerignore
+Ensure your .dockerignore excludes unnecessary files:
+```bash
+node_modules
+.env
+logs
+.git
+ ```
 
 - Mongoose schemas with field validation
 - `.env` for all secrets and keys
@@ -98,12 +140,8 @@ npm run payout:weekly
 
 ## 📌 TODO / Future Features
 
-- [ ] Add Apple Pay / Google Pay support
-- [ ] Admin dashboard with analytics
-- [ ] Real-time transaction tracking with WebSockets
-- [ ] Merchant onboarding workflow (KYC, etc.)
-- [ ] Invoicing and refund handling
-
+- [ ] Deploy on Swarm
+- [ ] Deploy on Azure
 ---
 
 ## 👥 Contributing
