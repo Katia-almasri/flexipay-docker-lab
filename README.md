@@ -1,4 +1,3 @@
-````md
 ## 🐳 Local Docker Setup for FlexiPay
 ** This guide explains how to run FlexiPay locally using Docker Compose, ideal for development and testing before deploying to Docker Swarm, cloud, or production environments.**
 
