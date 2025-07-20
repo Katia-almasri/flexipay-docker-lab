@@ -1,5 +1,5 @@
 ````md
-🐳 Local Docker Setup for FlexiPay
+## 🐳 Local Docker Setup for FlexiPay
 ** This guide explains how to run FlexiPay locally using Docker Compose, ideal for development and testing before deploying to Docker Swarm, cloud, or production environments.**
 
 ## 📁 Project Structure
@@ -49,39 +49,17 @@ flexipay/
 
 3. Port 5000 (app) and 27017 (MongoDB) should be free
 
-
-
 ---
 
-## 🔐 Authentication
-
-FlexiPay assumes you already have an auth system. It uses `req.user` to identify the current user (merchant or customer). You can plug in your own middleware or integrate with Passport/JWT.
-
----
-
-## 🏗️ API Endpoints
-
-### `POST /api/payments/create`
-
-Create a new payment using selected payment method.
-
-### `GET /api/payment-methods`
-
-List current user's payment methods with optional filters:
-
-```http
-GET /api/payment-methods?filter[type]=stripe&filter[is_primary]=true
+## 📁 Environment Variables
+   Create a .env.compose file in the root directory
+```bash
+MONGO_URL=mongodb://mongo:27017/flexipay
+NODE_ENV=development
+PORT=5000
 ```
-
-### `POST /api/payment-methods`
-
-Add a new payment method (e.g., Stripe Customer ID, PayPal email, etc.)
-
-### `POST /webhook/stripe`
-
-Handles Stripe webhook events (`payment_succeeded`, `payment_failed`, etc.)
-
 ---
+
 
 ## ⏱️ Scheduled Payouts
 
