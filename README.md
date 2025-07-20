@@ -101,7 +101,7 @@ services:
 
 Start the compose dile
    ```bash
-   docker compose upd
+   docker compose up
    ```
 
 Your backend should now be available at:
@@ -127,14 +127,6 @@ node_modules
 logs
 .git
  ```
-
-- Mongoose schemas with field validation
-- `.env` for all secrets and keys
-- Separation of concerns (services, models, routes, jobs)
-- Pagination utility with `limit`, `page`, `total`, `from`, `to`
-- Map-style credentials storage (e.g., `{ customerId: "cus_abc" }`)
-- Modular structure for adding future payment providers
-
 ---
 
 ## 📌 TODO / Future Features
