@@ -129,10 +129,25 @@ logs
  ```
 ---
 
-## 📌 TODO / Future Features
+## 📌 Deploy to Azure Container Application 
 
-- [ ] Deploy on Swarm
-- [ ] Deploy on Azure
+## 📦 Prerequisites
+- Docker image built and pushed to a container registry (e.g. Docker Hub or Azure Container Registry)
+- Azure CLI installed & logged in
+- Azure subscription + resource group ready
+
+## 🚀 Deployment Steps
+1. Build & Push the docker image
+   ```bash
+   docker build -t <your-image-name> .
+   docker tag <your-image-name> <registry>/<your-image-name>:v1
+   docker push <registry>/<your-image-name>:v1
+   ```
+2. Create Azure Container App from the Portal
+3.Create a new cluster on Mongo Atlas (as a SAAS) and configure the access white-list
+4. Configure Environment Variables
+5. Check Logs
+
 ---
 
 ## 👥 Contributing
